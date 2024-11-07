@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .switch {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .switch a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 id="form-title">Login</h2>
+    
+    <p class="message" id="message"></p>
+
+    <div id="login-form" class="form">
+        <div class="form-group">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Enter password">
+        </div>
+        <button class="btn" onclick="login()">Login</button>
+    </div>
+
+    <div id="signup-form" class="form" style="display: none;">
+        <div class="form-group">
+            <label for="signup-username">Username</label>
+            <input type="text" id="signup-username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Enter password">
+        </div>
+        <button class="btn" onclick="signup()">Sign Up</button>
+    </div>
+
+    <div class="switch">
+        <span id="toggle-message">Don't have an account? <a href="#" onclick="toggleForm()">Sign up</a></span>
+    </div>
+</div>
+
+<script>
+   
+    let isLoggedIn = false;
+
+    function login() {
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
+
+        if (username && password) {
+            isLoggedIn = true;
+            alert("Welcome back, " + username + "!");
+            window.location.href = "https://www.codechef.com/users/tiding_owls_09"  // Redirects to the main page
+              // Redirects to the main page
+        } else {
+            document.getElementById("message").textContent = "Please enter your username and password.";
+        }
+    }
+
+    function signup() {
+        const username = document.getElementById("signup-username").value;
+        const password = document.getElementById("signup-password").value;
+
+        if (username && password) {
+            isLoggedIn = true;
+            alert("Sign up successful. You can now log in.");
+            toggleForm(); // Switch to login form
+        } else {
+            document.getElementById("message").textContent = "Please enter a username and password.";
+        }
+    }
+
+    function toggleForm() {
+        const loginForm = document.getElementById("login-form");
+        const signupForm = document.getElementById("signup-form");
+        const formTitle = document.getElementById("form-title");
+        const toggleMessage = document.getElementById("toggle-message");
+
+        if (loginForm.style.display === "none") {
+            loginForm.style.display = "block";
+            signupForm.style.display = "none";
+            formTitle.textContent = "Login";
+            toggleMessage.innerHTML = `Don't have an account? <a href="#" onclick="toggleForm()">Sign up</a>`;
+        } else {
+            loginForm.style.display = "none";
+            signupForm.style.display = "block";
+            formTitle.textContent = "Sign Up";
+            toggleMessage.innerHTML = `Already have an account? <a href="#" onclick="toggleForm()">Log in</a>`;
+        }
+    }
+</script>
+
+</script>
+
+</body>
+</html>
